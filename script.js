@@ -47,30 +47,21 @@ class Cell {
     }
 
     onClick() {
-        if (currentTool === "shovel") {
-            this.plant = null;
-            if (this.type === "water") {
-                this.type = "land";
-            }
-        } else if (currentTool === "bucket") {
-            this.type = this.type === "water" ? "land" : "water";
-        } else if (currentTool === "seed" && this.type === "land" && !this.plant) {
-            let seedType = document.getElementById("seedSelect").value;
-            if (seedType === "swamp") this.plant = new SwampPlant();
-            if (seedType === "potato") this.plant = new PotatoPlant();
-            if (seedType === "cactus") this.plant = new CactusPlant();
+    if (currentTool === "shovel") {
+        this.plant = null;
+        if (this.type === "water") {
+            this.type = "land";
         }
-        this.updateAppearance();
+    } else if (currentTool === "bucket") {
+        this.type = this.type === "water" ? "land" : "water";
+    } else if (currentTool === "seed" && this.type === "land" && !this.plant) {
+        let seedType = document.getElementById("seedSelect").value;
+        if (seedType === "swamp") this.plant = new SwampPlant();
+        if (seedType === "potato") this.plant = new PotatoPlant();
+        if (seedType === "cactus") this.plant = new CactusPlant();
     }
-
-    tick() {
-        if (this.plant) {
-            this.plant.grow(this.moisture);
-            if (!this.plant.alive) this.plant = null;
-        }
-        this.updateAppearance();
+    this.updateAppearance(); // ← это уже правильно стоит
     }
-}
 
 class Plant {
     constructor(icon, minMoisture, maxMoisture) {
@@ -139,4 +130,5 @@ function gameTick() {
         }
     }
 }
+
 setInterval(gameTick, 1000);
