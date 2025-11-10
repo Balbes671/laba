@@ -45,7 +45,13 @@ class Cell {
             this.element.textContent = this.plant ? this.plant.icon : "";
         }
     }
-
+tick() {
+    if (this.plant) {
+        this.plant.grow(this.moisture);
+        if (!this.plant.alive) this.plant = null;
+    }
+    this.updateAppearance(); // здесь всё ок
+        }
     onClick() {
     if (currentTool === "shovel") {
         this.plant = null;
@@ -132,3 +138,4 @@ function gameTick() {
 }
 
 setInterval(gameTick, 1000);
+
