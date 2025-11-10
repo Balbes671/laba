@@ -13,6 +13,7 @@ body {
     grid-template-rows: repeat(10, 40px);
     gap: 2px;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .cell {
@@ -27,7 +28,7 @@ body {
 }
 
 .water {
-    background: #3399ff;
+    background: #3399ff !important;
 }
 
 .plant {
